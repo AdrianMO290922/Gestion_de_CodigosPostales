@@ -5,6 +5,8 @@ import com.example.repository.MunicipioRepository;
 import jakarta.inject.Singleton;
 
 import java.util.List;
+import java.util.Set;
+
 @Singleton
 public class MunicipioService {
     MunicipioRepository municipioRepository;
@@ -13,14 +15,15 @@ public class MunicipioService {
     this.municipioRepository = municipioRepository;
         }
 
-    public Municipio showById(int id_municipio){
+    public Municipio showById(Integer id_municipio){
         return municipioRepository.findById(id_municipio).orElse(null);
 
-    }
-  public List<Municipio> showMunPorEdo(Integer id_estado) {
-        return municipioRepository.showMunPorEdo(id_estado);
     }
     public List<Municipio> showAll(){
         return municipioRepository.findAll();
     }
+  public Set<Municipio> showMunPorEdo(Integer id_estado) {
+        return municipioRepository.showMunPorEdo(id_estado);
+    }
+
 }

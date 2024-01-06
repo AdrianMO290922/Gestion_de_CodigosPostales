@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.DTOs.EstadoDto;
 import com.example.entity.Estado;
 import com.example.repository.EstadoRepository;
 import jakarta.inject.Singleton;
@@ -19,6 +20,7 @@ public class EstadoService {
     public List<Estado> showAll(){
         return estadoRepository.findAll();
     }
+
 
 
 }

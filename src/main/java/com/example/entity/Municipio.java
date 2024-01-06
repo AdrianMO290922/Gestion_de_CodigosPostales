@@ -16,7 +16,7 @@ public class Municipio {
     @Id
     @Column(name = "Id_Municipios")
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_municipios;
+    private Integer id_municipios;
 
     @Column(name = "Municipios")
     private String municipios;

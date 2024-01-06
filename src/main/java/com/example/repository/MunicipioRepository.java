@@ -8,13 +8,14 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface MunicipioRepository extends JpaRepository<Municipio,Integer> {
 
    // @Query(value = "SELECT * FROM municipios WHERE Id_Estados = :id_estado", nativeQuery = true)
    @Query("SELECT m FROM Municipio m WHERE m.estado.id_estado = :IdEstado")
-    List<Municipio> showMunPorEdo(Integer IdEstado);
+   Set<Municipio> showMunPorEdo(Integer IdEstado);
 
 
 
