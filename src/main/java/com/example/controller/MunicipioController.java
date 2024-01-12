@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.DTOs.MunicipioDto;
+import com.example.entity.Estado;
 import com.example.entity.Municipio;
 import com.example.payload.MensajeResponse;
 import com.example.service.EstadoService;
@@ -29,22 +30,34 @@ public class MunicipioController {
 
     @Get("/municipios")
     @Status(HttpStatus.OK)
-    public List<Municipio> showAll(){
-        return municipioService.showAll();
+    public HttpResponse<?> mostrarMunicipios(){
+        try {
+            List<Municipio> list = municipioService.showAll();
+            int tamaño = list.size();
+            if (list == null) {
+                mensajeResponse = MensajeResponse.builder().error(true).mensaje("No se encontraron municipios").build();
+                return io.micronaut.http.HttpResponse.ok(mensajeResponse);
+            } else {
+                mensajeResponse = MensajeResponse.builder().error(false).municipios(list).mensaje("Municipios cargados " + tamaño).build();
+                return io.micronaut.http.HttpResponse.ok(mensajeResponse);
+            }
+        }catch (Exception e){
+            mensajeResponse = MensajeResponse.builder().error(true).mensaje(e.getMessage()).municipios(null).build();
+            return io.micronaut.http.HttpResponse.ok(mensajeResponse);
+        }
     }
+    /*public List<Municipio> showAll(){
+        return municipioService.showAll();
+    }*/
 
-    @Get("/municipio/{id_estado}")
+   /* @Get("/municipio/{id_estado}")
     @Status(HttpStatus.OK)
     public Set<Municipio> showById(@PathVariable Integer id_estado){
         return municipioService.showMunPorEdo(id_estado);
-    }
-    ///Prueba de un endpoint con dos parametros
-    @Get("/colonias/estado/{id_edo}/municipio/{id_mun}")
-    public String mostrarColonias(@PathVariable Integer id_edo, @PathVariable Integer id_mun){
-        return "Las colonias del estado "+id_edo+" del municipio "+id_mun+" son:";
-    }
+    }*/
+
     @Get("/municipios/estado/{id}")
-    public HttpResponse<?> mostrarMunicipios(@PathVariable Integer id){
+    public HttpResponse<?> mostrarMunicipiosEdo(@PathVariable Integer id){
         try {
             Set<Municipio> colMunicipios =municipioService.showMunPorEdo(id);//Coleccion
             List<MunicipioDto> listMunDto =colMunicipios.stream()///Mapeo en la coleccion

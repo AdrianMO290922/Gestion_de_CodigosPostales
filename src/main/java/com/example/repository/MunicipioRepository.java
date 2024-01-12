@@ -1,5 +1,6 @@
 package com.example.repository;
 
+import com.example.entity.Estado;
 import com.example.entity.Municipio;
 import io.micronaut.data.annotation.Query;
 import io.micronaut.data.annotation.Repository;
@@ -11,10 +12,11 @@ import java.util.List;
 import java.util.Set;
 
 @Repository
-public interface MunicipioRepository extends JpaRepository<Municipio,Integer> {
+public interface MunicipioRepository extends JpaRepository<Municipio, Integer> {
 
-   // @Query(value = "SELECT * FROM municipios WHERE Id_Estados = :id_estado", nativeQuery = true)
-   @Query("SELECT m FROM Municipio m WHERE m.estado.id_estado = :IdEstado")
+   // @Query(SELECT m FROM Municipio m WHERE m.estado.id_estado = :IdEstado)
+  // @Query("SELECT m FROM Municipio m JOIN FETCH m.estado WHERE m.estado.id_estado = :IdEstado")
+   @Query("SELECT m FROM Municipio m JOIN FETCH m.estado WHERE m.estado.id_estado = :IdEstado")
    Set<Municipio> showMunPorEdo(Integer IdEstado);
 
 

@@ -10,16 +10,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "CP")
+@Table(name = "cp")
 @Serdeable.Serializable
 public class CP {
 
     @Id
-    @ManyToOne
-    @JoinColumn(name = "Id_Municipios")
-    private Municipio id_municipio;
-
     @Column(name = "CP")
     private Integer cp;
+
+    @ManyToOne
+    @JoinColumn(name = "Id_Municipios")
+    private Municipio municipio;
 
 }

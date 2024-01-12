@@ -21,14 +21,11 @@ import java.util.stream.Collectors;
 @Controller("/api/v1")
 public class EstadoController {
     EstadoService estadoService;
-    MunicipioService municipioService;
     MensajeResponse mensajeResponse;
     HttpResponse<MensajeResponse> HttpResponse;
 /////////////////////////////Inyección de Dependencias///////////////////////////
-    public EstadoController(EstadoService estadoService, MunicipioService municipioService){
+    public EstadoController(EstadoService estadoService){
         this.estadoService = estadoService;
-        this.municipioService = municipioService;
-
     }
    /* @Get("estado/{id}")
     @Status(HttpStatus.OK)

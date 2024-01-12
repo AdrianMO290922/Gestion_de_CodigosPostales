@@ -19,7 +19,7 @@ public class MensajeResponse implements Serializable {
     private Object estado;
     private List<Estado> estados;
     private Object municipios;
-    private Object colonia;
-    private Object cp;
+    private Object colonias;
+    private Object codigo_postal;
 }
 

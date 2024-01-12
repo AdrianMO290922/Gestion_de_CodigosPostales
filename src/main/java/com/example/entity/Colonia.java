@@ -15,12 +15,14 @@ import lombok.NoArgsConstructor;
 public class Colonia {
 
     @Id
+    @Column(name = "Colonia")
+    private String colonia;
+
     @ManyToOne
     @JoinColumn(name = "CP")
     private CP cp;
 
-    @Column(name = "Colonia")
-    private String colonia;
+
 
 
 }
