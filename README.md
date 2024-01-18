@@ -8,11 +8,11 @@ La siguiente documentación se hizo a partir de la creación de una API creada e
 4. **Colonias.**
 
 Por medio de esta API se pueden hacer varios tipos de consultas, teniendo relaciones entre cada uno de sus bloques, la información presentada es la que actualmente se tiene. Todo el tipo de consultas que se hacen son de tipo GET, ya que la información no se puede manipular, solo consultar, se podrán realizar las siguientes consultas(se dividen en los bloques mencionados) :
-### 1. Estados.
- _Obtencion de todos los estados._
-- Endpoint: `/api/v1/estados`
-- Descripción: Mediante un petición GET, extrae todos los estados de la base de datos creada.
-- Respuesta:(Respuesta reducida por exceso de datos)
+## 1. Estados.
+ ### _Obtencion de todos los estados._
+- **Endpoint:** `/api/v1/estados`
+- **Descripción:** Mediante un petición GET, extrae todos los estados de la base de datos creada.
+- **Respuesta:** (Respuesta reducida por exceso de datos)
 ```json
  "error": false,
     "mensaje": "Estados cargados 32",
@@ -48,11 +48,11 @@ Por medio de esta API se pueden hacer varios tipos de consultas, teniendo relaci
     ]
 ```
 
-_Obtención de un estado y su información a partir de su id._
-- Endpoint:`/api/v1/estado/{id}`
-- Descripción: Mediante una petición GET se filtra el ID y de esta forma se puede extraer un objeto tipo estado y brindarnos información sobre este.
-- Ejemplo: `/api/v1/estado/16`
-- Respuesta:
+### _Obtención de un estado y su información a partir de su id._
+- **Endpoint:** `/api/v1/estado/{id}`
+- **Descripción:** Mediante una petición GET se filtra el ID y de esta forma se puede extraer un objeto tipo estado y brindarnos información sobre este.
+- **Ejemplo:** `/api/v1/estado/16`
+- **Respuesta:**
 ```json
 {
     "error": false,
@@ -65,11 +65,11 @@ _Obtención de un estado y su información a partir de su id._
 ```
 
 
-### 2. Municipios.
-_Obtención de todos los municipios._
-- Endpoint: `/api/v1/municipios` 
-- Descripción: Mediante una petición GET, extrae todos los municipios de la base de datos creada.
-- Respuesta: (Respuesta reducida por exceso de datos)
+## 2. Municipios.
+### _Obtención de todos los municipios._
+- **Endpoint:** `/api/v1/municipios` 
+- **Descripción:** Mediante una petición GET, extrae todos los municipios de la base de datos creada.
+- **Respuesta:** (Respuesta reducida por exceso de datos)
 ```json
 {
     "error": false,
@@ -111,11 +111,11 @@ _Obtención de todos los municipios._
 ```
 
 
-_Obtención de municipios dependiendo su estado._
-- Endpoint: `/api/v1/municipios/estado/{id}`
-- Descripción: Mediante una petición GET, se filtra el id de un Estado, del cual se listaran todos los municipios que tengan relación al ID del estado solicitado.
-- Ejemplo: `/api/v1/municipios/estado/16`
-- Respuesta:
+## _Obtención de municipios dependiendo su estado._
+- **Endpoint:** `/api/v1/municipios/estado/{id}`
+- **Descripción:** Mediante una petición GET, se filtra el id de un Estado, del cual se listaran todos los municipios que tengan relación al ID del estado solicitado.
+- **Ejemplo:** `/api/v1/municipios/estado/16`
+- **Respuesta:**
 ```json
  "error": false,
     "mensaje": "Municipios cargados 113",
@@ -142,11 +142,11 @@ _Obtención de municipios dependiendo su estado._
         },
     ]
 ```
-### 3. Codigos postales.
-_Obtención de todos los códigos postales._
-- Endpoint: `/api/v1/codigos_postales`
-- Descripción: Mediante una petición GET se listaran todos los códigos postales que se encuentren en la base de datos creada.
-- Respuesta: (Respuesta reducida por exceso de datos)
+## 3. Codigos postales.
+### _Obtención de todos los códigos postales._
+- **Endpoint:** `/api/v1/codigos_postales`
+- **Descripción:** Mediante una petición GET se listaran todos los códigos postales que se encuentren en la base de datos creada.
+- **Respuesta:** (Respuesta reducida por exceso de datos)
 ```json
  "error": false,
     "mensaje": "Se encontraron 31984 que pertenecen",
@@ -182,11 +182,11 @@ _Obtención de todos los códigos postales._
     ]
 ```
 
-_Obtención de los códigos postales según el municipio._
-- Endpoint: `/api/v1/codigos_postales/municipio/{id}`
-- Descripción: Mediante una petición GET se filtra el id del municipio, del cual se listaran todos los códigos Postales que tengan relación al ID del municipio solicitado.
-- Ejemplo: `/api/v1/codigos_postales/municipio/796`
-- Respuesta: (Respuesta reducida por exceso de datos)
+### _Obtención de los códigos postales según el municipio._
+- **Endpoint:** `/api/v1/codigos_postales/municipio/{id}`
+- **Descripción:** Mediante una petición GET se filtra el id del municipio, del cual se listaran todos los códigos Postales que tengan relación al ID del municipio solicitado.
+- **Ejemplo:** `/api/v1/codigos_postales/municipio/796`
+- **Respuesta:** (Respuesta reducida por exceso de datos)
 ```json
  "error": false,
     "mensaje": "Se encontraron 147 que pertenecen",
@@ -221,12 +221,12 @@ _Obtención de los códigos postales según el municipio._
         },
 ```
 
-### 4. Colonias.
-_Obtención de colonias según sea  su código postal._
-- Endpoint: `/api/v1/colonias/codigo_postal/{cp}`
-- Descripción: Mediante una petición GET, se filtra el código postal dado, del cual se listaran todas las colonias que tengan relación con ese código postal.
-- Ejemplo: `/api/v1/colonias/codigo_postal/58230`
-- Respuesta:
+## 4. Colonias.
+### _Obtención de colonias según sea  su código postal._
+- **Endpoint:** `/api/v1/colonias/codigo_postal/{cp}`
+- **Descripción:** Mediante una petición GET, se filtra el código postal dado, del cual se listaran todas las colonias que tengan relación con ese código postal.
+- **Ejemplo:** `/api/v1/colonias/codigo_postal/58230`
+- **Respuesta:**
 ```json
 {
     "error": false,
@@ -252,11 +252,11 @@ _Obtención de colonias según sea  su código postal._
 }
 ```
 
-_Obtención de colonias según sea el estado y el municipio._	
-- Endpoint: `/api/v1/colonias/estado/{id}/municipio/{id}`
-- Descripción: Mediante una petición GET, se filtrara el ID del estado y del municipio, después de esta relación se listaran todas las colonias que pertenezcan a esta
-- Ejemplo: `/api/v1/colonias/estado/16/municipio/796`
-- Respuesta: (Respuesta reducuida por el exceso de datos)
+### _Obtención de colonias según sea el estado y el municipio._	
+- **Endpoint:** `/api/v1/colonias/estado/{id}/municipio/{id}`
+- **Descripción:** Mediante una petición GET, se filtrara el ID del estado y del municipio, después de esta relación se listaran todas las colonias que pertenezcan a esta
+- **Ejemplo:** `/api/v1/colonias/estado/16/municipio/796`
+- **Respuesta:** (Respuesta reducuida por el exceso de datos)
 ```json
  "error": false,
     "mensaje": "Se cargaron 1034 colonias",
