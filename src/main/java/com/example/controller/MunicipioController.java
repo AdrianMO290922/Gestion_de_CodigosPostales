@@ -23,8 +23,7 @@ public class MunicipioController {
     MensajeResponse mensajeResponse;
     HttpResponse<MensajeResponse> HttpResponse;
     MunicipioService municipioService;
-    public MunicipioController(MunicipioService municipioService, EstadoService estadoService){
-        this.municipioService = municipioService;
+    public MunicipioController(MunicipioService municipioService){
         this.municipioService = municipioService;
     }
 
@@ -33,12 +32,20 @@ public class MunicipioController {
     public HttpResponse<?> mostrarMunicipios(){
         try {
             List<Municipio> list = municipioService.showAll();
+            List<MunicipioDto> listMunDto = list.stream()
+                    .map(municipio -> MunicipioDto.builder()
+                            .id_estados(municipio.getEstado().getId_estado())
+                            .id_municipios(String.valueOf(municipio.getId_municipios()))
+                            .municipio(municipio.getMunicipios())
+                            .build()
+                    )
+                    .collect(Collectors.toList());
             int tamaño = list.size();
             if (list == null) {
                 mensajeResponse = MensajeResponse.builder().error(true).mensaje("No se encontraron municipios").build();
                 return io.micronaut.http.HttpResponse.ok(mensajeResponse);
             } else {
-                mensajeResponse = MensajeResponse.builder().error(false).municipios(list).mensaje("Municipios cargados " + tamaño).build();
+                mensajeResponse = MensajeResponse.builder().error(false).municipios(listMunDto).mensaje("Municipios cargados " + tamaño).build();
                 return io.micronaut.http.HttpResponse.ok(mensajeResponse);
             }
         }catch (Exception e){
@@ -46,15 +53,7 @@ public class MunicipioController {
             return io.micronaut.http.HttpResponse.ok(mensajeResponse);
         }
     }
-    /*public List<Municipio> showAll(){
-        return municipioService.showAll();
-    }*/
 
-   /* @Get("/municipio/{id_estado}")
-    @Status(HttpStatus.OK)
-    public Set<Municipio> showById(@PathVariable Integer id_estado){
-        return municipioService.showMunPorEdo(id_estado);
-    }*/
 
     @Get("/municipios/estado/{id}")
     public HttpResponse<?> mostrarMunicipiosEdo(@PathVariable Integer id){

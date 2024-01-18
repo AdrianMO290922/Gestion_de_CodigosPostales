@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 public class Municipio {
     @Id
     @Column(name = "Id_Municipios")
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_municipios;
 
     @Column(name = "Municipios")

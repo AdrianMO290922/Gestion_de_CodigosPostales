@@ -14,9 +14,8 @@ import java.util.Set;
 public class CPService {
     CPRepository cpRepository;
     ColoniaRepository coloniaRepository;
-    public CPService(CPRepository cpRepository, ColoniaRepository coloniaRepository){
+    public CPService(CPRepository cpRepository ){
         this.cpRepository = cpRepository;
-        this.coloniaRepository = coloniaRepository;
     }
     public List<CP> findAll(){
         return cpRepository.findAll();
@@ -24,9 +23,7 @@ public class CPService {
     public Set<CP> findMun(Integer id){return cpRepository.findMun(id);}
 
 
-   public Set<Colonia> showColCp(Integer codigo){
-        return coloniaRepository.showColCp(codigo);
-   }
+
 
 
 

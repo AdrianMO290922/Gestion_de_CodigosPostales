@@ -27,12 +27,7 @@ public class EstadoController {
     public EstadoController(EstadoService estadoService){
         this.estadoService = estadoService;
     }
-   /* @Get("estado/{id}")
-    @Status(HttpStatus.OK)
-    public Estado showById(@PathVariable int id){
 
-        return estadoService.showById(id);
-    }*/
     @Get("/estado/{id_estado}")
     public HttpResponse<?> mostrarEstado(@PathVariable Integer id_estado){
         try {
@@ -52,11 +47,7 @@ public class EstadoController {
         }
     }
 
-   /* @Get("estados")
-    @Status(HttpStatus.OK)
-    public List<Estado> showAll(){
-        return estadoService.showAll();
-    }*/
+
     @Get("/estados")
     public HttpResponse<?> mostrarEstados(){
         try {

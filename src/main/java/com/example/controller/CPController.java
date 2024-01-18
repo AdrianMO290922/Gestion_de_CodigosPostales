@@ -27,17 +27,36 @@ public class CPController {
 
     }
 
-@Get("/CP")
-    public List<CP> mostrarcP(){
-    return cpService.findAll();
+    @Get("/codigos_postales")
+    public HttpResponse<?> mostrarCp() {
+    List<CP> list = cpService.findAll();
+    List<CPDto> cpDtoList = list.stream()
+            .map(cp -> CPDto.builder()
+                    .estado_id(cp.getMunicipio().getEstado().getId_estado())
+                    .municipio_id(cp.getMunicipio().getId_municipios())
+                    .estado(cp.getMunicipio().getEstado().getEstado())
+                    .municipio(cp.getMunicipio().getMunicipios())
+                    .codigo_postal(cp.getCp())
+                    .build()
+            )
+            .collect(Collectors.toList());
+        if (list == null){
+            mensajeResponse = MensajeResponse.builder().error(true).mensaje("No se encontraron coincidencias").codigo_postal(cpDtoList).build();
+            return io.micronaut.http.HttpResponse.ok(mensajeResponse);
+        }
+        else {
+            mensajeResponse = MensajeResponse.builder().error(false).mensaje("Se encontraron "+list.size()+" que pertenecen").codigo_postal(cpDtoList).build();
+            return io.micronaut.http.HttpResponse.ok(mensajeResponse);
+        }
     }
-    @Get("/CP/municipio/{id}")
+
+    @Get("/codigos_postales/municipio/{id}")
     public HttpResponse<?> mostrarCp(Integer id){
         Set<CP> colCP= cpService.findMun(id);
         List<CPDto> listCpDto = colCP.stream()
                 .map(cp -> CPDto.builder()
-
-
+                        .municipio(cp.getMunicipio().getMunicipios())
+                        .codigo_postal(cp.getCp())
                         .build())
                 .collect(Collectors.toList());
         if (colCP == null){

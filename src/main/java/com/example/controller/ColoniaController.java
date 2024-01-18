@@ -30,7 +30,7 @@ public class ColoniaController {
         this.coloniaService = coloniaService;
         this.cpService = cpService;
     }
-    ///Prueba de un endpoint con dos parametros
+
     @Get("/colonias/estado/{id_edo}/municipio/{id_mun}")
     public HttpResponse<?> mostrarColoniasEdoMu(@PathVariable Integer id_edo, @PathVariable Integer id_mun){
         try{
@@ -40,8 +40,6 @@ public class ColoniaController {
                     .map(colonia -> ColoniaDto.builder()
                             .estado_id(colonia.getCp().getMunicipio().getEstado().getId_estado())
                             .municipio_id(colonia.getCp().getMunicipio().getId_municipios())
-                            //.estado(colonia.getCp().getMunicipio().getEstado().getEstado())
-                            //.municipio(colonia.getCp().getMunicipio().getMunicipios())
                             .codigo_postal(colonia.getCp().getCp())
                             .colonia(colonia.getColonia())
                             .fecha_Act(LocalDate.now())
@@ -65,7 +63,7 @@ public class ColoniaController {
     }
 
 
-    @Get("colonias/cp/{codigo}")
+    @Get("colonias/codigo_postal/{codigo}")
     public HttpResponse<?> mostrarColoniasCp(@PathVariable Integer codigo){
         try {
             Set<Colonia> colColonias =coloniaService.showColCp(codigo);
